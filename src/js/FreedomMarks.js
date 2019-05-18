@@ -282,6 +282,10 @@ function saveBookmark(browserTab){
     //var bookmarkurl = browserTab.url.trim().replace(/\/$/, "");
     if(debug) console.log('bookmarkurl: ' + bookmarkurl);
 
+    const saveBtn = document.getElementById('save-bookmark-button');
+    const prevText = saveBtn.innerText;
+    saveBtn.disabled = true;
+    saveBtn.innerText = 'Loading...';
     const data = {
         url: bookmarkurl,
         title: $('#bookmark-title').val(),
@@ -303,6 +307,8 @@ function saveBookmark(browserTab){
             } else {
                 addNotification('error','Not saved');
             }
+            saveBtn.disabled = false;
+            saveBtn.innerText = prevText;
         })
         .catch(error => {
             if(debug) {
@@ -318,7 +324,7 @@ function searchByTermsOrTags(){
     if(debug) console.log('function: ' + arguments.callee.name);
     if(debug) console.log('server_url: ' + server_url);
     if(debug) console.log('username: ' + username);
-    if(debug) console.log('password: ' + password);
+    if(debug) console.log('password: ' + '******');
 
     var endpoint = server_url + '/index.php/apps/bookmarks/public/rest/v2/bookmark';
 
@@ -338,7 +344,7 @@ function searchDaily(){
     if(debug) console.log('function: ' + arguments.callee.name);
     if(debug) console.log('server_url: ' + server_url);
     if(debug) console.log('username: ' + username);
-    if(debug) console.log('password: ' + password);
+    if(debug) console.log('password: ' + '******');
 
     var endpoint = server_url + '/index.php/apps/bookmarks/public/rest/v2/bookmark';
 
@@ -354,6 +360,10 @@ function searchBookmarks(endpoint, terms, tags, conjunction, page, listTag){
 
     if(debug) console.log('function: ' + arguments.callee.name);
     if(debug) testCorsEnabled(endpoint);
+
+    const searchBtn = document.getElementById('search-by-tags-button');
+    searchBtn.disabled = true;
+    searchBtn.innerText = 'Loading...';
 
     var select = ['id','url','title','tags', 'description', 'lastmodified'];
     if(terms.length == 0) {
@@ -380,6 +390,9 @@ function searchBookmarks(endpoint, terms, tags, conjunction, page, listTag){
                 if(debug) console.log(bookmarks);
                 makeBookmarksList(bookmarks, listTag);
             }
+            
+            searchBtn.disabled = false;
+            searchBtn.innerText = 'Search';
         })
         .catch(error => {
             if(debug) {
@@ -414,6 +427,10 @@ function deleteBookmark(e, bookmarkId){
         return false;
     }
 
+    const deleteBtn = document.getElementById('delete-bookmark-button');
+    deleteBtn.disabled = true;
+    deleteBtn.innerText = 'Loading...';
+    
     const endpoint = server_url + '/index.php/apps/bookmarks/public/rest/v2/bookmark/' + bookmarkId;
     const data = { id: bookmarkId };
 
@@ -425,6 +442,9 @@ function deleteBookmark(e, bookmarkId){
             $('#save-bookmark-button').text("Add");
             $('#save-bookmark-button').show();
             addNotification('success','bookmark deleted');
+            
+            deleteBtn.disabled = false;
+            deleteBtn.innerText = 'Delete';
         })
         .catch(error => {
             if(debug) {
