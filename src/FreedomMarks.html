@@ -8,9 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>FreedomMarks browser extension</title>
         <link href="css/third-party/bootstrap.min.css" rel="stylesheet">
-        <link href="css/third-party/jquery-ui.min.css" rel="stylesheet">
-        <link href="css/FreedomMarks.css" rel="stylesheet">
-        <link href="css/bookmarks-html-list.css" rel="stylesheet">
+        <link href="css/freedommarks-alternative-theme.css" rel="stylesheet">
     </head>
 
     <body>
@@ -31,7 +29,7 @@
                 </li>
 
                 <li role="presentation" id="daily-bookmarks-tab-label">
-                    <a href="#daily-bookmarks-tab" id="daily-bookmarks-tab-link" aria-controls="daily-bookmarks-tab" role="tab" data-toggle="tab">Daily</a>
+                    <a href="#daily-bookmarks-tab" id="daily-bookmarks-tab-link" aria-controls="daily-bookmarks-tab" role="tab" data-toggle="tab">Latest</a>
                 </li>
             </ul>
 
@@ -45,16 +43,16 @@
                     <form id="save-bookmark-form">
                         <input type="hidden" class="form-control" id="bookmark-id">
                         <input type="hidden" class="form-control" id="bookmark-url">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Title:</span>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" id="basic-addon1">Title</label>
                             <input type="text" class="form-control" id="bookmark-title" aria-describedby="basic-addon1">
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon3">Tags:</span>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" id="basic-addon3">Tags</label>
                             <input type="text" class="form-control" id="bookmark-tags" aria-describedby="basic-addon3">
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon2">Note:</span>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" id="basic-addon2">Note</label>
                             <textarea type="text" class="form-control" id="bookmark-description" aria-describedby="basic-addon2"></textarea>
                         </div>
 
@@ -66,7 +64,7 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary" id="save-bookmark-button">Save</button>
                         </div>
-                        <div class="btn-group" style="float: right;">
+                        <div class="btn-group">
                             <button type="button" class="btn btn-danger" id="delete-bookmark-button">Delete</button>
                         </div>
                         <div style="clear: both;"></div>
@@ -78,30 +76,32 @@
                 <div class="tab-pane" id="search-bookmarks-tab" role="tabpanel">
                     <form id="search-bookmarks-form">
                         <!-- terms -->
-                        <div class="input-group">
-                            <span class="input-group-addon" id="terms-addon">Terms:</span>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" id="terms-addon">Terms</label>
                             <input type="text" class="form-control" id="search-terms" aria-describedby="terms-addon" placeholder="term1,term2, ..." autofocus>
                         </div>
                         <!-- tags -->
-                        <div class="input-group">
-                            <span class="input-group-addon" id="tags-addon">Tags:&nbsp;</span>
+                        <div class="form-group tags-group">
+                            <label for="exampleInputEmail1" id="tags-addon">Tags</label>
                             <input type="text" class="form-control" id="search-tags" aria-describedby="tags-addon" placeholder="tag1,tag2, ..." autofocus>
-                            <span class="input-group-addon">
+                            <div class="form-group conjunction-group">
+                                <label>
                                 <input type="radio" name="conjunction" value="and" checked="true">AND
-                            </span>
-                            <span class="input-group-addon">
+                                </label>
+                                <label>
                                 <input type="radio" name="conjunction" value="or">OR
-                            </span>
+                                </label>    
+                            </div>
                         </div>
                         <!-- disable paging -->
-                        <div class="input-group">
-                            <span class="input-group-addon" id="tags-addon">Disable paging:</span>
-                            <span class="form-control">
+                        <div class="checkbox">
+                            <label>
                                 <input type="checkbox" name="disable_paging" value="disable_paging" />
-                            </span>
+                                Disable paging
+                            </label>
                         </div>
 
-                        <div class="btn-group btn-group-sm zero">
+                        <div class="btn-group zero">
                             <button type="button" class="btn btn-primary" id="search-by-tags-button">Search</button>
                         </div>
                     </form>
@@ -130,7 +130,6 @@
     </body>
 
     <script src="js/third-party/jquery-2.2.4.min.js"></script>
-    <script src="js/third-party/jquery-ui.min.js"></script>
     <script src="js/third-party/bootstrap.min.js"></script>
     <script src="js/third-party/chrome-promise.js"></script>
     <script src="js/apiRequest.js"></script>
